@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modern Calculator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+    }
+
+    .calculator {
+      width: 340px;
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      color: white;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      width: 60px;
+      height: 45px;
+      margin: 8px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .add { background: #00c9ff; color: white; }
+    .sub { background: #f7971e; color: white; }
+    .mul { background: #38ef7d; color: white; }
+    .div { background: #ff416c; color: white; }
+    .rem { background: #9d50bb; color: white; }
+
+    #res {
+      margin-top: 20px;
+      font-size: 20px;
+      min-height: 25px;
+      transition: 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="calculator">
+    <h1>Modern Calculator</h1>
+
+    <input type="number" id="n1" placeholder="Enter first number">
+    <input type="number" id="n2" placeholder="Enter second number">
+
+    <div class="buttons">
+      <button class="add" onclick="calculate('+')">+</button>
+      <button class="sub" onclick="calculate('-')">−</button>
+      <button class="mul" onclick="calculate('*')">×</button>
+      <button class="div" onclick="calculate('/')">÷</button>
+      <button class="rem" onclick="calculate('%')">%</button>
+    </div>
+
+    <div id="res"></div>
+  </div>
+
+  <script>
+    function calculate(operator) {
+      let a = Number(document.getElementById("n1").value);
+      let b = Number(document.getElementById("n2").value);
+      let result;
+
+      if (operator === '+') result = a + b;
+      else if (operator === '-') result = a - b;
+      else if (operator === '*') result = a * b;
+      else if (operator === '/') {
+        if (b === 0) {
+          result = "Cannot divide by zero!";
+        } else {
+          result = a / b;
+        }
+      }
+      else if (operator === '%') result = a % b;
+
+      document.getElementById("res").innerHTML = "Result: " + result;
+    }
+  </script>
+
+</body>
+</html>
